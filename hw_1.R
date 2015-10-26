@@ -22,33 +22,44 @@ while( asc_counter <= length (bins))
 #counters for the x vector and bin vector which
 x_counter = 1
 bin_counter = 1
+
+#intializes the result vector to the size of the bins vector +1
+result = numeric(length(bins) + 1); result
+
 #Will terminate when all values of the x value have been binned
 while((bin_counter < length(bins) ) && x_counter <= length(x)  )
 {
-	print(x_counter)
-	print(bin_counter)
-	
-	x_counter = x_counter + 1
-	bin_counter = bin_counter +1
-	print(" ")
-}
-
-result = numeric(length(bins) + 1); result
-if(x[x_counter] < bins[1])
+if(x[x_counter] <= bins[1])
 {
 	result[1] = result[1] +1
 	bin_counter = 1
 	x_counter = x_counter + 1
-}
-else if (x[x_counter] > bins[length(bins)])
+}else if (x[x_counter] > bins[length(bins)])
 {
+#takes care of the case where an element of x is larger
+#than the largest bin size
+	result[length(bins) +1] = result[length(bins) + 1] + 1
+	bin_counter = 1
+	x_counter = x_counter + 1
+}else if ((bins[bin_counter] < x[x_counter]) & (bins[bin_counter+1] >= x[x_counter]) )
+{
+	result[bin_counter + 1] = result[bin_counter + 1] + 1
+	bin_counter = 1
+	x_counter = x_counter + 1
+}else
+{
+	bin_counter = bin_counter + 1
+}
+
 }
 
 
 
+print(result)
 
 
-x =c(1,2,3,4)
+
+x =c(100,2,3,4)
 bin.data <-function(x,bins)
 {
 #counter used to cycle through the bins

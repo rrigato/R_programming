@@ -1,3 +1,31 @@
+	count1 = 1
+	count2 = 1
+	in1 = c(1,2,3,4) ; in2 = c(1.5,3,5)
+	final = numeric(length(in1) + length(in2))
+	final_count = 1
+	for (i in 1:(length(in1) + length(in2)) )
+	{
+
+
+
+		
+		print(final_count);
+		print(count1);
+		print(count2);
+		count1 = count1 +1
+		count2 = count2 +1
+		final_count = final_count + 1
+
+
+	}
+
+
+
+
+
+
+
+#problem 2
 bins = c(2.5,5,7.8,9, 85)
 #counter used to cycle through the bins
 asc_counter = 2

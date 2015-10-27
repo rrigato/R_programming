@@ -1,6 +1,7 @@
+merge.sort <- function(in1,in2)
+{
 	count1 = 1
-	count2 = 1
-	in1 = c(1,2,3,4) ; in2 = c(1.5,3,5)
+	count2 = 1 
 	final = numeric(length(in1) + length(in2))
 	final_count = 1
 
@@ -30,16 +31,27 @@
 
 			}
 		}
+		
+		if ( count2 > length(in2) )
+		{
+			while(count1 <= length(in1))
+			{
+				final[final_count] = in1[count1]
+				count1 = count1 +1			
+				final_count = final_count + 1
+
+			}
+		}
 
 
 
 	}
+	return(final)
+}
 
+ x = c(1,2,3,4) ;   y = c(1.5,3,5);
 
-
-
-
-
+z = merge.sort(x,y); z
 
 #problem 2
 bins = c(2.5,5,7.8,9, 85)

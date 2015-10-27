@@ -3,18 +3,34 @@
 	in1 = c(1,2,3,4) ; in2 = c(1.5,3,5)
 	final = numeric(length(in1) + length(in2))
 	final_count = 1
-	for (i in 1:(length(in1) + length(in2)) )
+
+	while( final_count <= (length(in1) + length(in2)))
 	{
 
 
+		if (in1[count1] < in2[count2])
+		{
+			final[final_count] = in1[count1]
+			count1 = count1 +1
+			final_count = final_count + 1
+		}
+		else
+		{
+			final[final_count] = in2[count2]
+			count2 = count2 +1			
+			final_count = final_count + 1
+		}
+		if ( count1 > length(in1) )
+		{
+			while(count2 <= length(in2))
+			{
+				final[final_count] = in2[count2]
+				count2 = count2 +1			
+				final_count = final_count + 1
 
-		
-		print(final_count);
-		print(count1);
-		print(count2);
-		count1 = count1 +1
-		count2 = count2 +1
-		final_count = final_count + 1
+			}
+		}
+
 
 
 	}

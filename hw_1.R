@@ -109,41 +109,22 @@ bin.data <-function(x,bins)
 	#starts with two special cases when x is less than the smallest bin
 	#or is greater than the largest bin
 	#only one of the 4 flow control statements will execute for each iteration
-	while((bin_counter <= length(bins) ) && x_counter <= length(x)  )
+  
+  result[1] = sum(x <= bins[1]) 
+  result[length(bins) + 1] = sum(x > bins[length(bins)])
+	while( bin_counter < length(bins)  )
 	{
-
-		#takes care of the case where x is less than the smallest bin
-		if(x[x_counter] <= bins[1])
-		{
-			result[1] = result[1] +1
-			bin_counter = 1
-			x_counter = x_counter + 1
-
-		}else if (x[x_counter] > bins[length(bins)])
-		{
-
-			#takes care of the case where an element of x is larger
-			#than the largest bin size
-			result[length(bins) +1] = result[length(bins) + 1] + 1
-			bin_counter = 1
-			x_counter = x_counter + 1
-
-		}else if ((bins[bin_counter] < x[x_counter]) & (bins[bin_counter+1] >= x[x_counter]) )
-		{
-			
-			#This is for the more general case when x is between two intervals
-			result[bin_counter + 1] = result[bin_counter + 1] + 1
-			bin_counter = 1
-			x_counter = x_counter + 1
-
-		}else
-		{
-			#if x does not fall into any of the bins, the bin_counter needs to be 
-			#incremented
-			bin_counter = bin_counter + 1
-		}
+    
+    result[bin_counter+1] = (x > bins[bin_counter]) && (x >= bins[bin_counter + 1])  
+    bin_counter = bin_counter + 1
 
 	}
 	#returns result vector
 	return(result)
 }
+
+
+set.seed(1234)
+a = sort(runif(12000))
+b = runif(12000)
+system.time(bin.data(b,a))

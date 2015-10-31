@@ -8,19 +8,23 @@ in.circle <- function(pts,cntr,r)
 	x_circle_max = cntr[1] + r
 	y_circle_max = cntr[2] + r
 
+	x_vect = numeric()
+	y_vect = numeric()
 	circle_count = 1
-	in_circle = matrix(,nrow=nrow(pts),ncol = 2)
-	while (circle_count <= nrow(pts) )
+	for( i in 1:(nrow(pts)) )
 	{
-		if( (pts[circle_count,1] <=x_circle_max)  && (pts[circle_count,1] >=x_circle_min) 
-			&& (pts[circle_count,2] <= y_circle_max) && (pts[circle_count,2] >= y_circle_min) )
+		if( (pts[i,1] <=x_circle_max)  && (pts[i,1] >=x_circle_min) 
+			&& (pts[i,2] <= y_circle_max) && (pts[i,2] >= y_circle_min) )
 		{
-			in_circle[circle_count,]= pts[circle_count,, drop = FALSE]
+			x_vect[circle_count] = pts[i,1]
+			y_vect[circle_count] = pts[i,2]
+			circle_count = circle_count + 1
 		}
-		circle_count = circle_count + 1
-	}
 
-	return(in_circle)
+	}
+	in_circle = cbind(x_vect,y_vect)
+
+	return(in_circle);
 
 	#used to plot the circle
 	theta = seq(0, 2 * pi*r, length = 2000)
@@ -64,3 +68,6 @@ nrow(pts3)
  
 z = in.circle(pts3,cntr,r)
 z
+
+
+

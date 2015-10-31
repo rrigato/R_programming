@@ -10,21 +10,30 @@ in.circle <- function(pts,cntr,r)
 
 	x_vect = numeric()
 	y_vect = numeric()
+	x_vect2 = numeric()
+	y_vect2 = numeric()
 	circle_count = 1
+	out_count = 1
 	for( i in 1:(nrow(pts)) )
 	{
-		if( (pts[i,1] <=x_circle_max)  && (pts[i,1] >=x_circle_min) 
-			&& (pts[i,2] <= y_circle_max) && (pts[i,2] >= y_circle_min) )
+		if( ( ((cntr[1] - pts[i,1])^2) + ((cntr[2] - pts[i,2])^2) )  <= (r*r) )
 		{
 			x_vect[circle_count] = pts[i,1]
 			y_vect[circle_count] = pts[i,2]
 			circle_count = circle_count + 1
 		}
+		else
+		{
+			x_vect2[out_count] = pts[i,1]
+			y_vect2[out_count] = pts[i,2]
+			out_count = out_count + 1			
+		}
 
 	}
 	in_circle = cbind(x_vect,y_vect)
+	out_circle = cbind(x_vect2,y_vect2)
 
-	return(in_circle);
+
 
 	#used to plot the circle
 	theta = seq(0, 2 * pi*r, length = 2000)
@@ -38,6 +47,10 @@ in.circle <- function(pts,cntr,r)
 	plot(x + cntr[1],y + cntr[2], type = 'l', sub = 'Ryan Rigato',
 	xlab = 'X', ylab = 'Y',  xlim = c(min(pts[,1]) - 2,max(pts[,1]) + 2),
 	ylim = c(min(pts[,2]) - 2,max(pts[,2]) + 2))
+	
+	lines(in_circle,type = 'p',col='red')
+	lines(out_circle, type = 'p', col = 'blue')
+	return(in_circle);
 }
 
 
@@ -54,6 +67,8 @@ pts2 = round(pts2,3)
 pts3 = cbind(pts1,pts2)
 min(pts3[,2])
 
+plot(pts3, type='p',col='red')
+plot(pts3, type='l',col ='blue')
 in.circle(pts3,cntr,r)
 pts3
 
@@ -68,6 +83,3 @@ nrow(pts3)
  
 z = in.circle(pts3,cntr,r)
 z
-
-
-

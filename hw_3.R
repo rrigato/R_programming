@@ -1,4 +1,7 @@
 name = "Ryan Rigato"
+
+#This function accepts a n which is the number of people in line
+#it then repeats the simulation sim.length times to determine the numerical answer
 ticket.line <- function (n, sim.length)
 {
 	#input validation: checks if n is less than 0

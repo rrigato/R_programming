@@ -45,7 +45,7 @@ while (convolution_counter <= (length(x) + length(y)  - 1) )
 		while(temp1_counter > 0)
 		{
 			result[convolution_counter] = sum(temp1[temp1_counter:1]*
-			temp2[length(temp2):(length(temp2) - (temp_count-1))])
+			temp2[length(temp2):(length(temp2) - (temp1_counter-1))])
 			temp1_counter = temp1_counter - 1
 			convolution_counter = convolution_counter + 1
 		}
@@ -58,12 +58,24 @@ while (convolution_counter <= (length(x) + length(y)  - 1) )
 x= c(0,1/6,1/6,1/6,1/6, 1/6, 1/6)
 x = c(0,1,1,1,1,1,1)
 result = conv(x,x)
-cumsum((1/216)*conv(result,x))
-
-for (i in 1:24)
+for (i in 1:23)
 {
-	result = conv(result,x)
+result = conv(result,x)
 }
+result = conv(result,x)
+cumsum(((1/6)^25) *result)
+
+
+
+
+
+
+temp1 = c(1,2,3)
+temp2 = c(1,2)
+length(temp2):(length(temp2) - (temp1_count-1))
+
+
+
 
 
 print(result)

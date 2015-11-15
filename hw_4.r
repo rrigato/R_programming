@@ -1,81 +1,85 @@
-name="Ryan Rigato"
-
-
-
-x= c(1,2,4)
-y= c(1,3)
-
-conv <-function(x,y)
+name= 'Ryan Rigato'
+#uses convoluation on two inputed vectors
+#The two vectors must be numeric
+#Doing the convolution on two vectors will also give the pdf of the sum of the vectors
+conv <- function(x,y)
 {
-if ((length(x) <= length(y)) )
-{
-	temp1 = x;
-	temp2 = y;
-}else
-{
-	temp1 = y;
-	temp2 = x;
-}
-
-
-temp1 = rev(temp1); temp1
-
-convolution_counter = 1;
-iteration_number = 0;
-result = numeric(length(temp2) + 1)
-temp1_counter = length(temp1) -1
-while (convolution_counter <= (length(x) + length(y)  - 1) )
-{
-
-	if (convolution_counter <= length(temp2))
+	#error checking to make sure the vectors are numeric
+	if(!is.numeric(x) || ! is.numeric(y) )
 	{
-		if (convolution_counter > length(temp1))
-		{
-			result[convolution_counter] =  sum(temp2[convolution_counter:(convolution_counter + 1 - length(temp1) )]
-			 * temp1[length(temp1):1])
+		print("Error: x and y vectors must be numeric");
+		return();
+	}
 
-		}
+
+	#if x has less elements than y it goes in temp1
+	#otherwise it goes into temp2
+	if ((length(x) <= length(y)) )
+	{
+		temp1 = x;
+		temp2 = y;
+	}else
+	{
+		temp1 = y;
+		temp2 = x;
+	}
+
+	#reversing the shorter vector
+	temp1 = rev(temp1); temp1
+
+	
+	convolution_counter = 1;
+
+	#sums the number of elements in the 2 vectors minus 1 is the size of the result vector
+	result = numeric(length(temp1) + length(temp2) - 1)
+	
+	#Used once every element of the larger temp2 vector is iterated over
+	temp1_counter = length(temp1) -1
+
+	#stops iterating once every element in the result vector is filled
+	while (convolution_counter <= (length(x) + length(y)  - 1) )
+	{
+		#this condition is true for the first temp2 elements  +1  iterations
+		if (convolution_counter <= length(temp2))
+		{
+			#if convolution_counter is greater than the # of elements in temp1,
+			# then temp1 needs to be shifted over by 1 to the right
+			#convolution_counter is larger than temp1 but smaller than temp2
+			#thus temp1 is shifted over by 1 until it is right aligned with temp2
+			#in which case there is no alignment in the first few elements
+			if (convolution_counter > length(temp1))
+			{
+				#shifts over each element by 1 such that every element in temp2 will be iterated
+				#will be iterated over
+				result[convolution_counter] =  sum(temp2[convolution_counter:(convolution_counter + 1 - length(temp1) )]
+				 * temp1[length(temp1):1])
+
+			}
+			else
+			{
+				#this accounts for not every element of temp1 being used 
+				#since convolution_counter is less than length(temp1)
+
+				result[convolution_counter] =  sum(temp2[convolution_counter:1] * temp1[length(temp1):(length(temp1)- (convolution_counter - 1))])
+			}
+		}	
 		else
 		{
-			result[convolution_counter] =  sum(temp2[convolution_counter:1] * temp1[length(temp1):(length(temp1)- (convolution_counter - 1))])
+			#Here we start to push elements of temp1 'off the edge' until there are none
+			#left to multiply
+			while(temp1_counter > 0)
+			{
+				#multiplies the overlapping elements
+				result[convolution_counter] = sum(temp1[temp1_counter:1]*
+				temp2[length(temp2):(length(temp2) - (temp1_counter-1))])
+				
+				#increments temp1_counter and convolution_counter
+				temp1_counter = temp1_counter - 1
+				convolution_counter = convolution_counter + 1
+			}
 		}
-	}	
-	else
-	{
-		while(temp1_counter > 0)
-		{
-			result[convolution_counter] = sum(temp1[temp1_counter:1]*
-			temp2[length(temp2):(length(temp2) - (temp1_counter-1))])
-			temp1_counter = temp1_counter - 1
-			convolution_counter = convolution_counter + 1
-		}
-	}
-	convolution_counter = convolution_counter + 1
-	iteration_number = iteration_number + 1;
-} 
+		#increments the convolution_counter
+		convolution_counter = convolution_counter + 1
+	} 
 	return(result)
 }
-x= c(0,1/6,1/6,1/6,1/6, 1/6, 1/6)
-x = c(0,1,1,1,1,1,1)
-result = conv(x,x)
-for (i in 1:23)
-{
-result = conv(result,x)
-}
-result = conv(result,x)
-cumsum(((1/6)^25) *result)
-
-
-
-
-
-
-temp1 = c(1,2,3)
-temp2 = c(1,2)
-length(temp2):(length(temp2) - (temp1_count-1))
-
-
-
-
-
-print(result)

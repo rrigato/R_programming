@@ -107,3 +107,18 @@ sum(y.pdf[80:97])
 
 #P(70 <= Y<= 95 )
 sum(y.pdf[71:96])
+
+
+
+
+#part b)
+
+x = dbinom(0:10,10, 0.3)
+y = dbinom(0:12,12,0.7)
+z = conv(x,y)
+z = round(z, digits =5)
+z
+
+
+#P(Z <= 9)
+sum(z[1:10])

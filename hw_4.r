@@ -83,3 +83,27 @@ conv <- function(x,y)
 	} 
 	return(result)
 }
+
+
+
+
+
+#test cases
+#part A)
+
+x = c(0,1,1,1,1,1,1)
+y.pdf = conv(x,x)
+for (i in 1:23)
+{
+  y.pdf = conv(y.pdf,x)
+}
+
+y.pdf = round(((1/6)^25) * y.pdf,digits = 5)
+y.pdf
+
+#P( 79 <= Y<= 96)
+sum(y.pdf[80:97])
+
+
+#P(70 <= Y<= 95 )
+sum(y.pdf[71:96])

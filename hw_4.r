@@ -27,7 +27,8 @@ conv <- function(x,y)
 	#reversing the shorter vector
 	temp1 = rev(temp1); temp1
 
-	
+	#counts how many elements have been filled 
+	#one per iteration up to length(x) + length(y) - 1
 	convolution_counter = 1;
 
 	#sums the number of elements in the 2 vectors minus 1 is the size of the result vector

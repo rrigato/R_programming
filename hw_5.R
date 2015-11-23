@@ -11,3 +11,15 @@ detect.misclass <- function(class.v,p)
 		return();
 	}
 }
+
+
+
+z = dist(p)
+p
+class.vec
+
+test = c(1,2,3)
+test2 = c(0,1,5)
+test3 = cbind(test,test2)	
+Far = dist(test3)
+Far

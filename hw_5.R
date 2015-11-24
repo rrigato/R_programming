@@ -23,3 +23,5 @@ test2 = c(0,1,5)
 test3 = cbind(test,test2)	
 Far = dist(test3)
 Far
+
+dist_mat = sqrt(sum((Far[1:n,1:n] - Far[1,1])))

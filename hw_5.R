@@ -30,15 +30,24 @@ dist_mat = sqrt(sum((Far[1:n,1:n] - Far[1,1])))
 z
 z[1,1:130]
 g = numeric(10); g
+gnum = rep(1,10); gnum
 temp = numeric(1)
 z = as.matrix(dist(p))
 for ( i in 1: length(p))
 {
+g =  z[1,1:10]
 	for (g in 1:length(p))
 	{
 		if ((z[1,g] != 0) &&(temp > z[1,g]) )
 		{
-			temp = z[1,g
+			temp = z[1,g]
+			g
 		}
 	}
 }
+
+err.found; err.loc; new.class;
+
+return (list(err.found,err.loc,new.class));
+
+

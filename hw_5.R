@@ -1,8 +1,18 @@
-test_vect = c(1,1,1)
 
-lm(test_vect~test_vect, data = test_vect)
+name = 'Ryan Rigato'
 
-
+#####################################################################################
+#	Make sure to run install.packages('bitops') before using this function
+#	It sorts points using a quick sort algorithm in order to detect misclassifications.
+#	It will return a list with there elements: a logical value if a misclassification 
+#	was found, a vector containg the location of the misclassifications
+#	and a matrix with the misclassification detected
+#
+#
+#
+#
+#
+####################################################################################
 detect.misclass <- function(class.v,p)
 {
 	if(length(class.v) != nrow(p) )
@@ -16,7 +26,7 @@ detect.misclass <- function(class.v,p)
 
 
 
-is.matrix(z) = dist(p)
+
 p
 class.vec
 
@@ -33,6 +43,10 @@ g = numeric(10); g
 gnum = rep(1,10); gnum
 temp = numeric(1)
 z = as.matrix(dist(p))
+temp = numeric()
+temp
+temp = z[1,1:nrow(z)]
+temp
 for ( i in 1: length(p))
 {
 g =  z[1,1:10]
@@ -51,3 +65,32 @@ err.found; err.loc; new.class;
 return (list(err.found,err.loc,new.class));
 
 
+
+
+
+
+
+quickSort <-function (columnVect, low, high)
+{
+	if ((low < high))
+	{
+		part = partition(columnVect, low, high)
+		quickSort(columnVect, low, part-1)
+		quickSort(columnVect, part + 1, high)
+	}
+
+}
+partition <- function (columnVect, low, high)
+{
+	pivot  = columnVect[high];
+	i = low
+	for (j in low:(high-1))
+	{
+		if(columnVect[j] <= pivot)
+		{
+			bitwOR(columnVect[i] ,columnVect[j])
+			columnVect[j] |=  columnVect[i]
+			columnVect[i] |=  columnVect[j]
+		}
+	}
+}

@@ -160,3 +160,33 @@ bubbleSort <- function(temp)
 
 
 
+selectionSort <- function(temp)
+{
+	row_num = 1:length(temp);
+	holder = 1
+	while(holder <=11)
+	{#outer while start
+	counter = holder;
+
+
+		while(counter <= length(temp) - 1)
+		{#inner while start
+			if ( temp[counter] >temp[counter + 1])
+			{
+				lowest = counter	
+			}
+			counter  = counter + 1
+
+		} #inner while close
+		row_num[holder] = lowest
+		place = temp[lowest]
+		temp[holder] = temp[lowest]
+		temp[lowest] = place
+		holder = holder + 1
+
+
+	}#outer while close
+
+	return(row_num);
+
+}

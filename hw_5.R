@@ -15,6 +15,10 @@ name = 'Ryan Rigato'
 ####################################################################################
 detect.misclass <- function(class.v,p)
 {
+	#loads the bitops package which can be used for bit operations
+	library(bitops)
+
+	#input validation for class.v
 	if(length(class.v) != nrow(p) )
 	{
 		print("Error: length(class.v) must equal the number of rows in p");
@@ -67,30 +71,51 @@ return (list(err.found,err.loc,new.class));
 
 
 
-
-
-
+q
+temp = 5:1
+q = quickSort(temp,1, length(temp))
 quickSort <-function (columnVect, low, high)
 {
-	if ((low < high))
-	{
-		part = partition(columnVect, low, high)
-		quickSort(columnVect, low, part-1)
-		quickSort(columnVect, part + 1, high)
-	}
 
+	if (low < high)
+	{
+		part = part2 = part3 =list();
+		part = partition(columnVect, low, high)
+	browser();
+		part2 = quickSort(part[[2]], low, part[[1]]-1)
+		part3 = quickSort(part2[[2]], part2[[1]] + 1, high)
+	}
+	return(part3[[2]]);
 }
 partition <- function (columnVect, low, high)
 {
 	pivot  = columnVect[high];
+			
 	i = low
-	for (j in low:(high-1))
+	for (j in low:(high))
 	{
 		if(columnVect[j] <= pivot)
 		{
-			bitwOR(columnVect[i] ,columnVect[j])
-			columnVect[j] |=  columnVect[i]
-			columnVect[i] |=  columnVect[j]
+			columnVect[i] = bitwXor(columnVect[i], columnVect[j])
+			columnVect[j] = bitwXor(columnVect[j], columnVect[i])
+			columnVect[i] = bitwXor(columnVect[i], columnVect[j])
+			i = i + 1;
 		}
 	}
+	columnVect[i] = bitwXor(columnVect[i], columnVect[high])
+	columnVect[high] = bitwXor(columnVect[high], columnVect[i])
+	columnVect[i] = bitwXor(columnVect[i], columnVect[high])
+
+	return(list(i, columnVect)); 
 }
+
+
+
+sortedK =1:10
+
+
+
+
+o = list(e,f)
+o[[2]]
+o[2]

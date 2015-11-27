@@ -1,4 +1,5 @@
 
+
 name = 'Ryan Rigato'
 
 #####################################################################################
@@ -112,10 +113,50 @@ partition <- function (columnVect, low, high)
 
 
 sortedK =1:10
-
-
+x = 5
+system.time(x*x)
 
 
 o = list(e,f)
 o[[2]]
 o[2]
+
+test = 1000:1
+row_num = 1:10
+system.time(bubbleSort(test))
+bubbleSort <- function(temp)
+{
+	row_num = 1:length(temp);
+	swap = TRUE;
+
+	while(swap)
+	{#outer while start
+	swap = FALSE
+	counter = 1;
+
+		while(counter <= length(temp) - 1)
+		{#inner while start
+			if ( temp[counter] >temp[counter + 1])
+			{
+#				holder = temp[counter]
+#				temp[counter] = temp[counter + 1]
+#				temp[counter + 1] = holder
+				holder = row_num[counter]
+				row_num[counter] =  row_num[counter + 1]
+				row_num[counter+1] = holder
+				swap = TRUE
+	
+			}
+			counter  = counter + 1
+
+		} #inner while close
+
+	
+	}#outer while close
+
+	return(row_num);
+}
+
+
+
+

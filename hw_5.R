@@ -1,5 +1,4 @@
 
-
 name = 'Ryan Rigato'
 
 #####################################################################################
@@ -158,30 +157,36 @@ bubbleSort <- function(temp)
 }
 
 
-
-
+temp = 15:1
+temp; length(temp)
 selectionSort <- function(temp)
 {
-	row_num = 1:length(temp);
+	row_num = 1:length(temp);row_num
 	holder = 1
-	while(holder <=11)
+	lowest = numeric(1); place = numeric(1);
+	while(holder <= 11)
 	{#outer while start
-	counter = holder;
+		counter = holder
+		lowest = holder
 
 
-		while(counter <= length(temp) - 1)
+		while(counter <= (length(temp) - 1))
 		{#inner while start
-			if ( temp[counter] >temp[counter + 1])
+			if ( temp[counter] > temp[counter + 1])
 			{
-				lowest = counter	
+				lowest = counter	+1
 			}
 			counter  = counter + 1
 
 		} #inner while close
-		row_num[holder] = lowest
-		place = temp[lowest]
-		temp[holder] = temp[lowest]
-		temp[lowest] = place
+
+			row_num[holder] = lowest
+			temp[lowest] = temp[holder]
+#			place = temp[lowest]
+#			temp[lowest] = temp[holder]
+#			temp[holder] = place
+		
+
 		holder = holder + 1
 
 
@@ -190,3 +195,42 @@ selectionSort <- function(temp)
 	return(row_num);
 
 }
+
+
+
+
+
+
+
+this_point = 1
+num_errors = 0
+new.class = p
+err.loc = null
+err.found = FALSE
+
+row_num = selectionSort
+
+close_points = p[row_num[2:11]]
+predicted_classification = round(mean(close_points))
+if(predicted_classification != p[this_point])
+{
+	num_errors = num_errors + 1
+	err.loc[num_errors] = this_point
+}
+
+
+
+
+
+
+
+if (num_errors)
+{
+	err.found = TRUE
+	
+}
+else
+{
+	new.class = null
+}
+return(list(err.found, err.loc, new.class)); 

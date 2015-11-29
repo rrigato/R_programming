@@ -251,7 +251,7 @@ while (counter <=k)
 	while (innerCounter > 1 )
 	{
 		
-		if (temp[(innerCounter-1)] < temp[innerCounter])
+		if ((temp[(innerCounter-1)] < temp[innerCounter]))
 		{
 			lowest = innerCounter - 1
 			
@@ -261,32 +261,14 @@ while (counter <=k)
 	}
 
 	print(lowest); print(temp[lowest]); print(temp[counter]);
-	if (lowest != counter)
-	{
-		temp[counter] = temp[
-		sorted[counter] = dummy
-	}
+
+
+		sorted[counter] = temp[lowest]
+		temp[lowest] = 10^15
+
 	counter = counter + 1
 }
-
-
-
-
-	innerCounter = length(temp); innerCounter
-	lowest = innerCounter
-	while (innerCounter > 1 )
-	{
-		
-		if (temp[(innerCounter-1)] < temp[innerCounter])
-		{
-			lowest = innerCounter - 1
-			
-		}
-
-		innerCounter = innerCounter - 1
-	}
-
-
+sorted
 
 
 

@@ -235,23 +235,63 @@ else
 }
 return(list(err.found, err.loc, new.class)); 
 
-
-
 p
 class.vec
 
 dist(p)
- temp = 11:1; 
-k= 11
+ temp = 5:1;temp
+
+k= 5
 counter  = 1
-sorted = numeric(11)
+sorted = numeric(k)
 while (counter <=k)
 {
-	while (counter <= (length(temp) -1))
+	innerCounter = length(temp)
+	lowest = innerCounter
+	while (innerCounter > 1 )
 	{
-		print(temp[counter])
+		
+		if (temp[(innerCounter-1)] < temp[innerCounter])
+		{
+			lowest = innerCounter - 1
+			
+		}
+
+		innerCounter = innerCounter - 1
 	}
-	sorted[counter] = temp[counter]
+
+	print(lowest); print(temp[lowest]); print(temp[counter]);
+	if (lowest != counter)
+	{
+		temp[counter] = temp[
+		sorted[counter] = dummy
+	}
 	counter = counter + 1
 }
+
+
+
+
+	innerCounter = length(temp); innerCounter
+	lowest = innerCounter
+	while (innerCounter > 1 )
+	{
+		
+		if (temp[(innerCounter-1)] < temp[innerCounter])
+		{
+			lowest = innerCounter - 1
+			
+		}
+
+		innerCounter = innerCounter - 1
+	}
+
+
+
+
+
+
+
+
+
 

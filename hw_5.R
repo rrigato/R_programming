@@ -234,3 +234,24 @@ else
 	new.class = null
 }
 return(list(err.found, err.loc, new.class)); 
+
+
+
+p
+class.vec
+
+dist(p)
+ temp = 11:1; 
+k= 11
+counter  = 1
+sorted = numeric(11)
+while (counter <=k)
+{
+	while (counter <= (length(temp) -1))
+	{
+		print(temp[counter])
+	}
+	sorted[counter] = temp[counter]
+	counter = counter + 1
+}
+

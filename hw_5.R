@@ -25,7 +25,8 @@ detect.misclass <- function(class.v,p)
 	}
 
 
-	#returns the sorted order of the points	
+	#returns the sorted order of the points
+	#so that any k can be chosen later on	
 	selectionSort <- function(temp)
 	{
 	
@@ -53,11 +54,15 @@ detect.misclass <- function(class.v,p)
 
 	#counter that keeps track of which point we are on
 	this_point = 1
+	#how many errors are found
 	num_errors = 0
+	
+	#initializes the three vectors to be returned
 	new.class = numeric()
 	err.loc = NULL
 	err.found = FALSE
 
+	#get the distance object as a matrix
 	z=as.matrix(dist(p))
 	sorted = numeric()
 
@@ -70,7 +75,7 @@ detect.misclass <- function(class.v,p)
 		sorted = selectionSort(z[i,1:nrow(z)])
 		this_point = i
 
-		#uses the 9 nearest points
+		#uses the 9 nearest points, can be changed to accomodate any k
 		#excluding the first because the distance from a point to
 		#itself is always 0
 		close_points = class.v[sorted[2:11]]
@@ -78,6 +83,8 @@ detect.misclass <- function(class.v,p)
 		#gets the predicted classifcation by rounding the mean of the nearest points
 		predicted_classification = round(mean(close_points))
 
+		#if the predicted_classification is not equal to the mean then we have an error
+		#otherwise we move on to the next point
 		if(predicted_classification != class.v[this_point])
 		{
 			num_errors = num_errors + 1
@@ -101,5 +108,4 @@ detect.misclass <- function(class.v,p)
 	# is a matrix with the points changed
 	return(list("err.found" = err.found, "err.loc" = err.loc, "new.class" = new.class ) ) 
 }
-
 

@@ -75,7 +75,7 @@ detect.misclass <- function(class.v,p)
 		}
 	}
 
-
+	#if num_errors is not equal to 0, err.found is TRUE
 	if (num_errors)
 	{
 		err.found = TRUE
@@ -84,7 +84,10 @@ detect.misclass <- function(class.v,p)
 	{
 		new.class = NULL
 	}
-
+	
+	#return a list with three element
+	#the first is a logical vector, the second is a vector containing the points I changed, the third
+	# is a matrix with the points changed
 	return(list(err.found, err.loc, new.class)); 
 }
 

@@ -15,8 +15,7 @@ name = "Ryan Rigato"
 ####################################################################################
 detect.misclass <- function(class.v,p)
 {
-	#loads the bitops package which can be used for bit operations
-	library(bitops)
+
 
 	#input validation for class.v
 	if(length(class.v) != nrow(p) )
@@ -24,7 +23,9 @@ detect.misclass <- function(class.v,p)
 		print("Error: length(class.v) must equal the number of rows in p");
 		return();
 	}
-	
+
+
+	#returns the sorted order of the points	
 	selectionSort <- function(temp)
 	{
 	
@@ -50,28 +51,38 @@ detect.misclass <- function(class.v,p)
 
 
 
-	
+	#counter that keeps track of which point we are on
 	this_point = 1
 	num_errors = 0
-	new.class = class.v
+	new.class = numeric()
 	err.loc = NULL
 	err.found = FALSE
 
 	z=as.matrix(dist(p))
 	sorted = numeric()
 
+	#cycles through each column of the matrix
+	#and determines if the point is accurately classified
 	for (i in 1:nrow(z))
 	{
+
+		#calls the selectionSort to find the nearest points and then compare classifications
 		sorted = selectionSort(z[i,1:nrow(z)])
 		this_point = i
+
+		#uses the 9 nearest points
+		#excluding the first because the distance from a point to
+		#itself is always 0
 		close_points = class.v[sorted[2:11]]
+
+		#gets the predicted classifcation by rounding the mean of the nearest points
 		predicted_classification = round(mean(close_points))
 
 		if(predicted_classification != class.v[this_point])
 		{
 			num_errors = num_errors + 1
 			err.loc[num_errors] = this_point
-			new.class[this_point] = predicted_classification
+			new.class[num_errors] = predicted_classification
 		}
 	}
 
@@ -88,6 +99,7 @@ detect.misclass <- function(class.v,p)
 	#return a list with three element
 	#the first is a logical vector, the second is a vector containing the points I changed, the third
 	# is a matrix with the points changed
-	return(list(err.found, err.loc, new.class)); 
+	return(list("err.found" = err.found, "err.loc" = err.loc, "new.class" = new.class ) ) 
 }
+
 

@@ -25,7 +25,27 @@ detect.misclass <- function(class.v,p)
 		return();
 	}
 	
+	selectionSort <- function(temp)
+	{
 	
+		N = length(temp)
+		temp2 = numeric(length(temp))
+		for ( i in 1:N)
+		{
+			Min = i
+			for ( j in 1:N)
+			{
+				if (temp[j] < temp[Min])
+				{
+					Min = j
+				}
+			}
+			temp[Min] = 10^15
+			temp2[i] = Min
+		
+		}
+		return(temp2);
+	}	
 
 
 
@@ -42,7 +62,7 @@ detect.misclass <- function(class.v,p)
 
 	for (i in 1:nrow(z))
 	{
-		sorted = order(z[i,1:nrow(z)])
+		sorted = selectionSort(z[i,1:nrow(z)])
 		this_point = i
 		close_points = class.v[sorted[2:11]]
 		predicted_classification = round(mean(close_points))
@@ -126,9 +146,6 @@ is.vector(z[5,1:nrow(z)])
 
 
 row_num = selectionSort
-
-
-
 
 
 

@@ -30,12 +30,12 @@ detect.misclass <- function(class.v,p)
 	selectionSort <- function(temp)
 	{
 	
-		N = length(temp)
+		k = 10
 		temp2 = numeric(length(temp))
-		for ( i in 1:N)
+		for ( i in 1:k)
 		{
 			Min = i
-			for ( j in 1:N)
+			for ( j in 1:k)
 			{
 				if (temp[j] < temp[Min])
 				{

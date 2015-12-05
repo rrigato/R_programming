@@ -57,15 +57,62 @@ v.data = v.data[,-1]; v.data
 t.data = t.data[,-1]; t.data
 
 
-tLength = nrow(t.data)
+	
 
+	#returns the sorted order of the points	
+	selectionSort <- function(temp)
+	{
+	
+		N = length(temp)
+		temp2 = numeric(length(temp))
+		for ( i in 1:N)
+		{
+			Min = i
+			for ( j in 1:N)
+			{
+				if (temp[j] < temp[Min])
+				{
+					Min = j
+				}
+			}
+			temp[Min] = 10^15
+			temp2[i] = Min
+		
+		}
+		return(temp2);
+	}
+
+knnOut = matrix(, nrow= nrow(v.data), ncol = k)
 i = 1
-TRUTH = 0
+sortedOrder = numeric()	
 for (i in 1:nrow(v.data))
 {
-t.data = rbind(t.data,v.data[i,]); t.data
-TRUTH = TRUTH + sum(v.data[i,] == t.data[nrow(t.data),])
-t.data = t.data[-nrow(t.data),]
+	t.data = rbind(t.data,v.data[i,]); t.data
+
+
+		distance_matrix = as.matrix(dist(t.data))
+
+		#gets the observation numbers for the k nearest points
+		sortedOrder = selectionSort(distance_matrix[nrow(t.data),])
+		
+
+		knnOut[i,] = sortedOrder[(2:(k+1))] 
+
+		#removes added validation obsertion which gives the original t.data matrix
+		#and then the for loop increments to the next iteration
+		t.data = t.data[-nrow(t.data),]
 }
 test = v.data[,-1]; is.matrix(test)
 setwd("C:\\Users\\Randy\\Downloads")
+
+
+temp = c(1,2,3,4,5,6,7,8,9)
+k=9
+sum(is.na(knnOut) ==TRUE)
+
+
+temp = 500:1
+
+
+
+sum(selectionSort(temp) == 500:1)

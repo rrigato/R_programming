@@ -2,18 +2,20 @@ name = "Ryan Rigato"
 
 ###########################################################
 #
+#	The k.nn function finds the k nearest neighbors to 
+#	each observation of v.data in t.data
+#	It returns a matrix wher each row corresponds the ith 
+#	observation in v.data
 #
-#
-#
-#
-#
-#
-#
-#
+#	The vote function gives a majority vote for the largest
+#	number of nearest neighbors and returns a nrow(v.data)
+#	vector containing the predicted classification
 ############################################################
 
 k.nn <-function(k, v.data, t.data)
 {
+		#input validation k must be length 1
+		#and v.data and t.data must be matrixes
 		if(length(k) !=1)
 		{
 			print("Error: k must be of length 1");
@@ -55,7 +57,7 @@ k.nn <-function(k, v.data, t.data)
 
 	#returns the sorted order of the points	
 	#Should pass k+1 to this function because 
-	#the first element will always be the point
+	#the first element will always be the actual point
 	selectionSort <- function(temp, N)
 	{
 	
@@ -78,6 +80,7 @@ k.nn <-function(k, v.data, t.data)
 		return(temp2);
 	}
 
+	#initialize the output matrix and sorted neighbors
 	knnOut = matrix(, nrow= nrow(v.data), ncol = k)
 	sortedOrder = numeric()	
 
@@ -111,7 +114,7 @@ k.nn <-function(k, v.data, t.data)
 
 
 
-
+	#return output matrix
 	return(knnOut);
 
 
@@ -120,14 +123,19 @@ k.nn <-function(k, v.data, t.data)
 	
 }
 
-i=1
+
+#returns the predicted classifications
 vote <- function(class.id, knn.out)
 {
+	#initialize output matrix
 	result = numeric(nrow(knn.out))
+	
+	#iterate through each point giving a majority vote for the nearest neighbors
 	for (i in 1:nrow(knn.out) )
 	{
 		result[i] = round(mean(class.id[knn.out[i,]]))
 	}
+	return(result)
 }
 
 
@@ -135,3 +143,28 @@ vote <- function(class.id, knn.out)
 #the files must be in the current working directory
 v.data = as.matrix(read.table("validate.set.dat", header=TRUE))
 t.data = as.matrix(read.table("train.set.dat", header=TRUE))
+
+
+
+knnOut3 = k.nn(3,v.data,t.data)
+result3 = vote(t.data[,1], knnOut3)	
+
+print("The observations that were misclassified with k=3:")
+print(which(result3 != v.data[,1]))
+
+
+
+knnOut9 = k.nn(9, v.data, t.data) 
+result9 = vote(t.data[,1], knnOut9)
+
+print("The observations that were misclassified with k=9:")
+print(which(result9 != v.data[,1]))
+
+
+
+
+knnOut23 = k.nn(23, v.data, t.data) 
+result23 = vote(t.data[,1], knnOut23)
+
+print("The observations that were misclassified with k=23:")
+print(which(result23 != v.data[,1]))

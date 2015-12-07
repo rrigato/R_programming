@@ -145,7 +145,7 @@ v.data = as.matrix(read.table("validate.set.dat", header=TRUE))
 t.data = as.matrix(read.table("train.set.dat", header=TRUE))
 
 
-
+#tests and prints misclassifcations for k=3
 knnOut3 = k.nn(3,v.data,t.data)
 result3 = vote(t.data[,1], knnOut3)	
 
@@ -154,6 +154,7 @@ print(which(result3 != v.data[,1]))
 
 
 
+#tests and prints misclassifications for k=9
 knnOut9 = k.nn(9, v.data, t.data) 
 result9 = vote(t.data[,1], knnOut9)
 
@@ -163,8 +164,19 @@ print(which(result9 != v.data[,1]))
 
 
 
+#Tests for misclassifications for when k=23
+
 knnOut23 = k.nn(23, v.data, t.data) 
 result23 = vote(t.data[,1], knnOut23)
 
 print("The observations that were misclassified with k=23:")
 print(which(result23 != v.data[,1]))
+
+
+
+
+
+
+
+
+

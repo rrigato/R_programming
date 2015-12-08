@@ -179,4 +179,27 @@ print(which(result23 != v.data[,1]))
 
 
 
+##################################################################
+#
+#	miscellaneous for windows 7 usage
+#
+#
+###############################################
+
+
+
+
+		class.id = numeric(nrow(t.data))
+		class.id = t.data[,1]
+		class.id
+setwd("C:\\Users\\Downloads")
+
+
+
+		temp2 = order(distance_matrix[nrow(t.data),])
+		#tests that the sorted vector returned is actually sorted
+		if( sum(sortedOrder[1:(k+1)] == temp2[1:(k+1)]) == (k+1))
+		{
+			counter = counter + 1
+		}
 

@@ -1,0 +1,17 @@
+#Ryan Rigato
+#problem 6
+prob6 <-read.csv("C:\\Users\\Randy\\Downloads\\prob62.csv")
+head(prob6); nrow(prob6)
+plot(ecdf(prob6[,1]), main = "Plot of the ecdf of hydrocarbons",
+	xlab = "percent")
+
+hist(prob6[,1], main = "Histogram of hydrocarbons",
+	xlab = "percent")
+
+qqnorm(prob6[,1], main = "probability plot of hydrocarbons")
+
+#retrieves the quantiles
+quantile(prob6[,1],  c(.90, .75, .50, .25, .10)) 
+
+
+

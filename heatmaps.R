@@ -90,3 +90,15 @@ text(x, y, labels=education$state)
 text(x, y, labels=education$state, col=dropout_colors)
 text(x, y, labels=education$state, col=reading_colors)
 
+install.packages('maps')
+library(maps)
+
+# Plain points
+# costcos <- read.csv("http://book.flowingdata.com/ch08/geocode/costcos.txt", sep="\t")
+costcos <- read.csv("http://book.flowingdata.com/ch08/geocode/costcos-geocoded.csv", sep=",")
+map(database="state")
+symbols(costcos$Longitude, costcos$Latitude, circles=rep(1, length(costcos$Longitude)), inches=0.05, add=TRUE)
+symbols(costcos$Longitude, costcos$Latitude, circles=rep(1, length(costcos$Longitude)), inches=0.03, add=TRUE)
+
+map(database="state", col="#cccccc")
+symbols(costcos$Longitude, costcos$Latitude, bg="#e2373f", fg="#ffffff", lwd=0.5, circles=rep(1, length(costcos$Longitude)), inches=0.05, add=TRUE)
